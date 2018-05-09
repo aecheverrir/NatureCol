@@ -53,7 +53,7 @@
 
 ## Visit
 
-Currently deployed with heroku: <a href="" target="_blank">**NatureCol**</a>
+Currently deployed with heroku: <a href="http://naturecol.herokuapp.com/" target="_blank">**NatureCol**</a>
 
 ---
 
