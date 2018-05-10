@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Container, Row, Col, Button } from "reactstrap";
 import { Meteor } from "meteor/meteor";
-import Home from "../../ui/pages/Home.jsx";
+import Home from "../pages/Home.jsx";
 import { withRouter  } from "react-router-dom";
 import { withTracker  } from "meteor/react-meteor-data";
 
@@ -19,7 +19,7 @@ export default class App extends Component {
 	render() {
 		return (
 			<div>
-				<h1> Hello </h1>
+				{this.props.children}
 			</div>
 		);
 	}
