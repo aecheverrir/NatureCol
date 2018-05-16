@@ -1,59 +1,32 @@
-/* CSS declarations go here */
-
-/* Line chart */
-body { font: 12px Arial; }
-
-path { 
-	stroke: steelblue;
-	stroke-width: 2;
-	fill: none;
+ul {
+    list-style-type: none;
+    margin-bottom: 10;
+    padding: 0;
+    overflow: hidden;
+    background-color: #6ceaad;
 }
 
-.axis path,
-.axis line {
-	fill: none;
-	stroke: grey;
-	stroke-width: 1;
-	shape-rendering: crispEdges;
-
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+	text-decoration: none;
+	float: right;
 }
 
-/* Bar chart */
-body {
-	background-color: #ffffff;
-	font-family: Helvetica, Arial, sans-serif;
-	padding: 50px;
-
+li a:hover:not(.active) {
+	background-color: #65EBF6;
+	text-decoration: none;
+	color: #8c8c8c;
 }
 
-rect {
-	fill: #03cbbe;
+.active {
+    background-color: #65EBF6;
 }
 
-.carouselAddition{
-	margin-bottom: 150px;
-}
 
-.carousel-inner{
-	padding-left: 70px;
-}
+.logoNav {
+	float: left;
 
-.center-cropped {
-  width: 500;
-  height: 350px;
-  background-position: center center;
-  background-repeat: no-repeat;
-  overflow: hidden;
-}
-
-/* Set the image to fill its parent and make transparent */
-.center-cropped img {
-  min-height: 100%;
-  min-width: 100%;
-  /* IE 8 */
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
-  /* IE 5-7 */
-  filter: alpha(opacity=0);
-  /* modern browsers */
-  opacity: 0;
 }
