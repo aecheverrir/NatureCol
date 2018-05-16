@@ -1,10 +1,12 @@
 import React, { Component } from "react";
-import { Container, Row, Col, Button } from 'react-bootstrap';
+import { Grid, Row, Col, Button } from 'react-bootstrap';
 import { Meteor } from "meteor/meteor";
 import { withRouter  } from "react-router-dom";
 import { withTracker  } from "meteor/react-meteor-data";
+import NavBar from "./NavBar";
+import MainView from "./mainView";
 
-export default class App extends Component {
+export class App extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -13,13 +15,21 @@ export default class App extends Component {
 	}
 
 	componentDidMount() {
+
 	}
 
 	render() {
 		return (
-			<div>
-				{this.props.children}
-			</div>
+			<Grid fluid>
+				<NavBar />
+				<MainView />
+			</Grid>
 		);
 	}
 }
+export default withRouter(withTracker(() => {
+
+	return {
+		currentUser: null
+	};
+})(App));

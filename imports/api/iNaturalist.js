@@ -12,7 +12,7 @@ function apiCallLog(rest, url) {
 
 Meteor.methods({
   'iNaturalist.getCarouselView'() {
-    let urlCommand = "https://api.inaturalist.org/v1/observations?iconic_taxa=Mammalia,Aves,Plantae,Actinopterygii&order_by=votes&photos&place_id=7196&popular=true&per_page=5";
+    let urlCommand = "https://api.inaturalist.org/v1/observations?iconic_taxa=Aves,Plantae&photos=true&place_id=7196&per_page=5";
 
     apiCallLog("GET", urlCommand);
     try {

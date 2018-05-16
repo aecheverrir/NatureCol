@@ -13,14 +13,11 @@ export default class HomeContainer extends Component {
 
 	render() {
 		return(
-			<Grid>
-				<Row>
-					<Col xs={10} sm={10} md={10} lg={10}>
-						<NavBar />
-						<HomeCarousel />
-					</Col>
-				</Row>
-			</Grid>
+			<Row>
+				<Col className='column-carousel' xs={9} sm={9} md={9} lg={9}>
+					<HomeCarousel />
+				</Col>
+			</Row>
 		);
 	}
 }

@@ -7,11 +7,6 @@ import SecondPage from "../../ui/pages/SecondPage.jsx";
 
 export const renderRoutes = () => ( 
 	<Router> 
-		<App>
-			<Switch>
-				<Route exact path="/" component={HomeContainer} />
-				<Route exact path="/second" component={SecondPage} />
-			</Switch>
-		</App>
+		<App />
 	</Router>
 );

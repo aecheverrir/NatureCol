@@ -29,20 +29,18 @@ export default class HomeCarousel extends Component {
 
   render() {
     return (
-      <Carousel width={650} height={350}>
+      <Carousel>
         {
           this.state.carouselObservations.map((obs, i) => {
             return(
               <Carousel.Item key={obs.uuid}>
-                <div className="center-cropped"
-                  style={{ backgroundImage: "url('"+obs.photos[0].url.replace('square', 'medium')+"')"}}>
-                  <img alt={obs.species_guess} src={obs.photos[0].url.replace('square','medium')} />
+                <div className="center-cropped" style={{ backgroundImage: "url('" + obs.photos[0].url.replace('square', 'large')+"')"}}>
+                  <img alt={obs.species_guess} src={obs.photos[0].url.replace('square', 'large')} />
                 </div>
                 <Carousel.Caption>
                   <h3>{obs.species_guess}</h3>
                   <p>{obs.photos[0].attribution}</p>
                 </Carousel.Caption>
-                
               </Carousel.Item>
             )
           })
