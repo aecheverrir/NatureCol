@@ -12,8 +12,12 @@ export default class HomeContainer extends Component {
 
 	render() {
 		return(
-			<Grid fluid>
-				<HomeCarousel />
+			<Grid>
+				<Row>
+					<Col xs={10} sm={10} md={10} lg={10}>
+						<HomeCarousel />
+					</Col>
+				</Row>
 			</Grid>
 		);
 	}

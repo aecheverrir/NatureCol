@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Carousel } from 'react-bootstrap';
+import { Row, Col, Carousel, Button } from 'react-bootstrap';
 import { Meteor } from "meteor/meteor";
 import { withRouter } from "react-router-dom";
 import { withTracker } from "meteor/react-meteor-data";
@@ -29,16 +29,20 @@ export default class HomeCarousel extends Component {
 
   render() {
     return (
-      <Carousel>
+      <Carousel width={650} height={350}>
         {
           this.state.carouselObservations.map((obs, i) => {
             return(
               <Carousel.Item key={obs.uuid}>
-                <img width={900} height={500} alt="900x500" src={obs.photos[0].url} />
+                <div className="center-cropped"
+                  style={{ backgroundImage: "url('"+obs.photos[0].url.replace('square', 'medium')+"')"}}>
+                  <img alt={obs.species_guess} src={obs.photos[0].url.replace('square','medium')} />
+                </div>
                 <Carousel.Caption>
                   <h3>{obs.species_guess}</h3>
                   <p>{obs.photos[0].attribution}</p>
                 </Carousel.Caption>
+                
               </Carousel.Item>
             )
           })
