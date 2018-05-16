@@ -17,14 +17,9 @@ export default class MainView extends Component {
 
   render() {
     return (
-      <Row>
-        <Col sm={12}>
-          <Switch>
-            <Route exact path='/' name='homePage' render={(props) => <HomeContainer {...props} />}/>
-
-          </Switch>
-        </Col>
-      </Row>
+      <Switch>
+        <Route exact path='/' name='homePage' render={(props) => <HomeContainer {...props} />} />
+      </Switch>
     )
   }
 }

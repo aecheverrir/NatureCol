@@ -1,3 +1,21 @@
+/*
+Main Colors
+
+Primary: #6ceaad
+Secondary: #65EBF6
+Terciary: #57D3BA
+White: #ffffff
+
+
+Blacks & Greys
+
+Black: #323232
+Grey: #8c8c8c
+Light Grey: #e7e9ed
+
+*/
+
+
 .navegationBar {
     list-style-type: none;
     margin-bottom: 0;
@@ -25,18 +43,32 @@ li a:hover:not(.active) {
 	float: left;
 }
 
-.column-carousel{
+.carousel-indicators {
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.rowContainerHome {
+    margin-right: 0px !important;
+    margin-left: 0px !important;
+}
+
+.howToContainer {
+    border-radius: 3px;
+    /*background-color: #6ceaad;*/
+}
+
+.row-carousel {
+    background-color: black;
+}
+
+.column-carousel {
     margin-left: auto;
     margin-right: auto;
 }
 
 .carousel-inner > .item > img {
     margin: 0 auto;
-}
-
-.carousel-indicators{
-    margin-left: auto;
-    margin-right: auto;
 }
 
 .center-cropped {
@@ -57,4 +89,14 @@ li a:hover:not(.active) {
   filter: alpha(opacity=0);
   /* modern browsers */
   opacity: 0;
+}
+
+.whatYouCanDo {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.imageFit {
+    margin-top: 5px;
+    width: inherit;
 }

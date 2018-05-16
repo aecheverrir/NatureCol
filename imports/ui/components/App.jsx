@@ -30,6 +30,6 @@ export class App extends Component {
 export default withRouter(withTracker(() => {
 
 	return {
-		currentUser: null
+		currentUser: Meteor.user(),
 	};
 })(App));

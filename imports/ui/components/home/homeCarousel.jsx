@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import { Row, Col, Carousel, Button } from 'react-bootstrap';
 import { Meteor } from "meteor/meteor";
-import { withRouter } from "react-router-dom";
-import { withTracker } from "meteor/react-meteor-data";
 
 export default class HomeCarousel extends Component {
   constructor(props) {
