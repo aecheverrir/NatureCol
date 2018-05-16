@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import { Container, Row, Col, Button } from "reactstrap";
+import { Container, Row, Col, Button } from 'react-bootstrap';
 import { Meteor } from "meteor/meteor";
-import Home from "../pages/Home.jsx";
 import { withRouter  } from "react-router-dom";
 import { withTracker  } from "meteor/react-meteor-data";
 

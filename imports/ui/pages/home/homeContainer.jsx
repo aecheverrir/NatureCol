@@ -1,6 +1,8 @@
 import React, { Component } from "react";
+import { Grid, Row, Col } from 'react-bootstrap';
+import HomeCarousel from "../../components/home/homeCarousel";
 
-export default class Home extends Component {
+export default class HomeContainer extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -10,7 +12,9 @@ export default class Home extends Component {
 
 	render() {
 		return(
-			<h1> Home Page </h1>
+			<Grid fluid>
+				<HomeCarousel />
+			</Grid>
 		);
 	}
 }
