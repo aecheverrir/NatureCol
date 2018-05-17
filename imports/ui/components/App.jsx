@@ -5,6 +5,7 @@ import { withRouter  } from "react-router-dom";
 import { withTracker  } from "meteor/react-meteor-data";
 import NavBar from "./NavBar";
 import MainView from "./mainView";
+import Footer from "./Footer.jsx";
 
 export class App extends Component {
 	constructor(props) {
@@ -23,6 +24,7 @@ export class App extends Component {
 			<Grid fluid>
 				<NavBar />
 				<MainView />
+				<Footer />
 			</Grid>
 		);
 	}

@@ -19,9 +19,8 @@ export default class NavBar extends React.Component{
                         <nav>
                             <ul className='navegationBar'>
                                 <li><Link to="" className="logoNav" href="#">NATURECOL</Link ></li>
-                                <li><Link to="" href="#"><AccountsUIWrapper /></Link ></li>
-                                <li><Link to="" href="#">About</Link ></li>
-                                <li><Link to="" href="#">Second Page</Link ></li>
+                                <li><Link to="" href=""><AccountsUIWrapper /></Link ></li>
+                                <li><Link to="" href="">About</Link ></li>
                             </ul>
                         </nav>
                     </div>

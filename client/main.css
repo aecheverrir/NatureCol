@@ -16,12 +16,122 @@ Light Grey: #e7e9ed
 */
 
 
+/* Reset CSS */
+html, body, div, span, object, iframe,
+    h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+    abbr, address, cite, code,
+    del, dfn, em, img, ins, kbd, q, samp,
+    small, strong, sub, sup, var,
+    b, i,
+    dl, dt, dd, ol, ul, li,
+    fieldset, form, label, legend,
+    table, caption, tbody, tfoot, thead, tr, th, td,
+    article, aside, canvas, details, figcaption, figure, 
+    footer, header, hgroup, menu, nav, section, summary,
+    time, mark, audio, video {
+        margin:0;
+        padding:0;
+        border:0;
+        outline:0;
+        font-size:100%;
+        vertical-align: baseline;
+        background:transparent;
+    }
+
+    body {
+        line-height:1;
+        padding-top: 0px;
+    }
+
+    img{
+        max-width: 100%;
+        vertical-align: text-top;
+    }
+
+    article,aside,details,figcaption,figure,
+    footer,header,hgroup,menu,nav,section { 
+        display:block;
+    }
+
+    nav ul {
+        list-style:none;
+    }
+
+    a {
+        margin:0;
+        padding:0;
+        font-size:100%;
+        vertical-align:baseline;
+        background:transparent;
+        color: #ffffff;
+    }
+
+    /* change colours to suit your needs */
+    ins {
+        background-color:#ff9;
+        color:#000;
+        text-decoration:none;
+    }
+
+    /* change colours to suit your needs */
+    mark {
+        background-color:#ff9;
+        color:#000; 
+        font-style:italic;
+        font-weight:bold;
+    }
+
+    del {
+        text-decoration: line-through;
+    }
+
+    abbr[title], dfn[title] {
+        border-bottom:1px dotted;
+        cursor:help;
+    }
+
+    table {
+        border-collapse:collapse;
+        border-spacing:0;
+    }
+
+    /* change border colour to suit your needs */
+    hr {
+        display:block;
+        height:1px;
+        border:0;   
+        border-top:1px solid #cccccc;
+        margin:1em 0;
+        padding:0;
+    }
+
+    input, select {
+        vertical-align:middle;
+    }
+
+    div {
+        padding: 0;
+    }
+
+    .container-fluid {
+        padding-right: 0px;
+        padding-left: 0px;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
 .navegationBar {
     list-style-type: none;
     margin-bottom: 0;
     padding: 0;
     overflow: hidden;
     background-color: #6ceaad;
+}
+
+.wrapper{
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
 }
 
 li a {
@@ -99,4 +209,113 @@ li a:hover:not(.active) {
 .imageFit {
     margin-top: 5px;
     width: inherit;
+}
+
+.howto {
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+/*    footer    */
+footer{
+    width: 100%;
+    margin-top: 10px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    background: #323232;
+    overflow: hidden;
+}
+
+footer section{
+    display: block;
+    width: 230px;
+    margin-right: 60px;
+    float: left;
+}
+
+footer section:last-child{
+    margin-right: 0;
+}
+
+footer .adress{
+    color: #fff;
+    font-family: "aleo-regular", arial;
+    font-size: 16px;
+    line-height: 32px;
+    font-weight: normal;
+    letter-spacing: 1px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 15px;
+    float: left;
+    
+}
+
+footer .adress .location{
+    color: #ffffff;
+    font-family: "aleo-light", arial;
+    font-weight: lighter;
+}
+
+footer .adress .phone{
+    font-family: "aleo-bold", arial;
+    font-weight: bold;
+}
+
+footer .footer_nav ul{
+    list-style: none;
+}
+
+footer .footer_nav ul li{
+    display: block;
+    margin-bottom: 18px;
+}
+
+footer .footer_nav ul li a{
+    text-decoration: none;
+    color: #fff;
+    font-family: "aleo-regular", arial;
+    font-size: 16px;
+    letter-spacing: 1px;
+    padding-bottom: 3px;
+    border-bottom: 1px solid #3b3b3b;
+}
+
+footer .footer_nav ul li a:hover{
+    border-bottom: 2px solid #FFF;
+}
+
+footer .copyrights{
+    padding-top: 20px;
+}
+
+footer .copyrights .footer_logo{
+    margin-bottom: 0px;
+    margin-left: 15px;
+}
+
+footer .copyrights p{
+    color: #ffffff;
+    font-family: "aleo-light", arial;
+    font-size: 14px;
+    font-weight: lighter;
+    line-height: 32px;
+    letter-spacing: 1px;
+    padding-left: 15px;
+}
+
+footer .copyrights h3{
+    color: #ffffff;
+    font-family: "aleo-light", arial;
+    font-weight: lighter;
+    line-height: 32px;
+    letter-spacing: 1px;
+    padding-left: 15px;
+}
+
+footer .copyrights p a{
+    font-family: "aleo-bold", arial;
+    font-weight: bold;
+    color: #ffffff;
+    text-decoration: none;
 }
