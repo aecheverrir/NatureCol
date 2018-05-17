@@ -28,7 +28,9 @@ Meteor.methods({
         });
       }
       return true;
-    })
+    });
+
+    ProfileCollections.insert(collectionJSON);
 
   },
   'collections.update'(collectionJSON) {
@@ -54,16 +56,30 @@ Meteor.methods({
         });
       }
       return true;
-    })
+    });
 
+    ProfileCollections.update({
+      $and: [
+        { _id: collectionJSON._id },
+        { ownerId: collectionJSON.ownerId }
+      ],
+      $set: { observations: collectionJSON.observations}
+    });
 
   },
   'collections.remove'(collectionJSON) {
+    check(collectionJSON._id, Match.OneOf(String, Number));
+
     if (!this.userId || collectionJSON.ownerId !== this.userId) {
       throw new Meteor.Error('[Error] Not-authorized for the action');
     }
     
-
+    ProfileCollections.remove({
+      $and: [
+        { _id: collectionJSON._id },
+        { ownerId: collectionJSON.ownerId }
+      ]
+    });
   }
 
 });
