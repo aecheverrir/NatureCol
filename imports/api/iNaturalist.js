@@ -1,5 +1,5 @@
 import { Meteor } from 'meteor/meteor';
-import { check, Match } from 'meteor/check'
+import { check, Match } from 'meteor/check';
 import { HTTP } from 'meteor/http';
 
 const INATURALIST_URL = 'https://api.inaturalist.org/v1/';

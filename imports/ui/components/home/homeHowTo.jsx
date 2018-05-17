@@ -13,20 +13,6 @@ export default class HomeHowTo extends Component {
   render() {
     return (
       <Grid style={{textAlign: 'center'}}>
-        {/*
-        <Row>
-          <Col className='whatYouCanDo' xs={8} sm={8} md={8} lg={8}>
-            <Row>
-              <Col xs={12} sm={12} md={12} lg={12}>
-                <h1>What you can do in NatureCol</h1>
-                <p>
-
-                </p>
-              </Col>
-            </Row>
-          </Col>
-        </Row>
-        */}
         <Row>
           <Col xs={4} sm={4} md={4} lg={4}>
             <Row className='rowContainerHome'>
