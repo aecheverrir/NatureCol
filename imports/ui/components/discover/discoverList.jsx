@@ -9,18 +9,28 @@ class DiscoverList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      pageNumber: 1,
-      itemsPerPage: 16
+      pageNumber: 1
     }
   }
 
 
   componentDidMount() {
-    this.props.getObservations({}, this.state.pageNumber, this.state.itemsPerPage);
+    this.props.getObservations({ }, this.state.pageNumber, this.state.itemsPerPage);
+  }
+
+  componentWillUpdate(props){
+    if(props.newSearch){
+      this.setState({
+        pageNumber: 1
+      });
+    }
   }
 
   renderItems() {
     return this.props.observations.map((item) => {
+      if (!item.photos[0]){
+        console.log(item);
+      }
       return <DiscoverItem data={item} key={item.id} />
     });
   }

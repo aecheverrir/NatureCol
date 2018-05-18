@@ -14,13 +14,13 @@ export default class DiscoverSpeciesItem extends Component {
     console.log("Props ", props.specie);
   }
 
-  handleClick(event) {
-    console.log(event);
+  handleClick(spec) {
+    console.log(spec.id);
   }
 
   render() {
     return (
-      <tr className='speciesRow' onClick={this.handleClick}>
+      <tr className='speciesRow' onClick={() => this.handleClick(this.props.specie)}>
         <td>{this.props.index}</td>
         <td>
           {this.props.specie.default_photo?
