@@ -14,6 +14,7 @@ class DiscoverList extends Component {
     }
   }
 
+
   componentDidMount() {
     this.props.getObservations({}, this.state.pageNumber, this.state.itemsPerPage);
   }
