@@ -328,3 +328,13 @@ footer .copyrights p a{
     text-decoration: none;
 }
 
+/* Discover Item */
+.discover_item {
+    border: 1px solid #e7e7e7;
+    margin: 4px 0;
+    height: 200px;
+}
+
+.discover_item_img {
+    
+}

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Grid, Row, Col } from 'react-bootstrap';
+import DiscoverList from "../../components/discover/discoverList";
 
 import DiscoverFilter from "../../components/discover/discoverFilter";
 
@@ -43,6 +44,7 @@ export default class DiscoverContainer extends Component {
 		return(
 			<div>
 				<DiscoverFilter />
+        <DiscoverList/>
 			</div>
 		);
 	}
