@@ -7,15 +7,20 @@ export default class DiscoverSpeciesItem extends Component {
     this.state = {
       
     }
+    this.handleClick = this.handleClick.bind(this);
   }
 
   componentWillUpdate(props){
     console.log("Props ", props.specie);
   }
 
+  handleClick(event) {
+    console.log(event);
+  }
+
   render() {
     return (
-      <tr>
+      <tr className='speciesRow' onClick={this.handleClick}>
         <td>{this.props.index}</td>
         <td>
           {this.props.specie.default_photo?

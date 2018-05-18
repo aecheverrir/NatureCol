@@ -9,22 +9,17 @@ class DiscoverList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: []
+      pageNumber: 1,
+      itemsPerPage: 16
     }
   }
 
   componentDidMount() {
-    const queryParams = {};
-    Meteor.call("iNaturalist.getObservations", queryParams, 1, 1, (err, res) => {
-      console.log(this);
-      this.setState({
-        data: res,
-      });
-    });
+    this.props.getObservations({}, this.state.pageNumber, this.state.itemsPerPage);
   }
 
   renderItems() {
-    return this.state.data.map((item) => {
+    return this.props.observations.map((item) => {
       return <DiscoverItem data={item} key={item.id} />
     });
   }

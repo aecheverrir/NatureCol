@@ -338,3 +338,7 @@ footer .copyrights p a{
 .discover_item_img {
     
 }
+
+.speciesRow:hover {
+    background-color: #57D3BA;
+}
