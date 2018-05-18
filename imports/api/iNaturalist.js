@@ -9,9 +9,12 @@ const OBSERVERS = 'observations/observers?';
 const IDENTIFIERS = 'observations/identifiers?';
 const TAXA = 'taxa?';
 
+
 const AMPERSANT = '&';
 const IS_EQUAL = '=';
 const COLOMBIA_PLACE = 'place_id=7196';
+const PHOTOS_TRUE = "photos=true";
+
 const PER_PAGE = 'per_page';
 const PAGE = 'page';
 
@@ -75,7 +78,6 @@ Meteor.methods({
       quality_grade: Match.Maybe(String),
       threatened: Match.Maybe(String),
       introduced: Match.Maybe(String),
-      photos: Match.Maybe(String),
       popular: Match.Maybe(String),
       sounds: Match.Maybe(String),
       iconic_taxa: Match.Maybe(String),
@@ -85,7 +87,7 @@ Meteor.methods({
       d2: Match.Maybe(String)
     });
 
-    let urlCommand = INATURALIST_URL + OBSERVATION +COLOMBIA_PLACE;
+    let urlCommand = INATURALIST_URL + OBSERVATION +COLOMBIA_PLACE + AMPERSANT + PHOTOS_TRUE;
 
     //Se itera en las llaves del JSON, que son los nombres de los query params,
     //para formar la URL de la consulta.
@@ -122,7 +124,6 @@ Meteor.methods({
       quality_grade: Match.Maybe(String),
       threatened: Match.Maybe(String),
       introduced: Match.Maybe(String),
-      photos: Match.Maybe(String),
       popular: Match.Maybe(String),
       sounds: Match.Maybe(String),
       iconic_taxa: Match.Maybe(String),
@@ -132,7 +133,7 @@ Meteor.methods({
       d2: Match.Maybe(String)
     });
 
-    let urlCommand = INATURALIST_URL + SPECIES_COUNT + COLOMBIA_PLACE;
+    let urlCommand = INATURALIST_URL + SPECIES_COUNT + COLOMBIA_PLACE + AMPERSANT + PHOTOS_TRUE;
 
     //Se itera en las llaves del JSON, que son los nombres de los query params,
     //para formar la URL de la consulta.
@@ -169,7 +170,6 @@ Meteor.methods({
       quality_grade: Match.Maybe(String),
       threatened: Match.Maybe(String),
       introduced: Match.Maybe(String),
-      photos: Match.Maybe(String),
       popular: Match.Maybe(String),
       sounds: Match.Maybe(String),
       iconic_taxa: Match.Maybe(String),
@@ -179,7 +179,7 @@ Meteor.methods({
       d2: Match.Maybe(String)
     });
 
-    let urlCommand = INATURALIST_URL + OBSERVERS + COLOMBIA_PLACE;
+    let urlCommand = INATURALIST_URL + OBSERVERS + COLOMBIA_PLACE + AMPERSANT + PHOTOS_TRUE;
 
     //Se itera en las llaves del JSON, que son los nombres de los query params,
     //para formar la URL de la consulta.
@@ -216,7 +216,6 @@ Meteor.methods({
       quality_grade: Match.Maybe(String),
       threatened: Match.Maybe(String),
       introduced: Match.Maybe(String),
-      photos: Match.Maybe(String),
       popular: Match.Maybe(String),
       sounds: Match.Maybe(String),
       iconic_taxa: Match.Maybe(String),
@@ -226,7 +225,7 @@ Meteor.methods({
       d2: Match.Maybe(String)
     });
 
-    let urlCommand = INATURALIST_URL + IDENTIFIERS + COLOMBIA_PLACE;
+    let urlCommand = INATURALIST_URL + IDENTIFIERS + COLOMBIA_PLACE + AMPERSANT + PHOTOS_TRUE;
 
     //Se itera en las llaves del JSON, que son los nombres de los query params,
     //para formar la URL de la consulta.

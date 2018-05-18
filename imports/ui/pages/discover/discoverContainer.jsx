@@ -53,7 +53,7 @@ export default class DiscoverContainer extends Component {
 					</Row>
 					<Row>
 						<Col md={3}>
-							<DiscoverSpeciesList species={this.state.speciesList} />
+							<DiscoverSpeciesList getObservations={this.getObservations} species={this.state.speciesList} />
 						</Col>
 						<Col md={9}>
 							<DiscoverList observations={this.state.observations} getObservations={this.getObservations} />

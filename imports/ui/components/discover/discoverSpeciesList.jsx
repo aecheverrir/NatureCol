@@ -10,6 +10,12 @@ export default class DiscoverSpeciesList extends Component {
     }
   }
 
+  getObservationsByTaxon(taxonId){
+    let query ={
+      taxon_id: (taxonId + "")
+    };
+    this.props.getObservations(query, 1, 16);
+  }
 
   render() {
     return (
