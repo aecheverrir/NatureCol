@@ -18,13 +18,9 @@ export default class DiscoverFilter extends Component {
       console.log('Query Param:', this.state.commonName);
       this.props.setSpeciesList(this.state.commonName);
     }
-    else{
-      //Does something else
-    }
   }
 
   handleCommonNameChange(event){
-    console.log(event.target.value);
     this.setState({
       commonName: event.target.value
     });
@@ -42,14 +38,11 @@ export default class DiscoverFilter extends Component {
               <Form inline onSubmit={this.handleSpeciesSubmit}
                 style={{marginTop: '10px'}}>
                 <FormGroup controlId="formInlineName">
-                  <ControlLabel>
-                    Search Species
-                  </ControlLabel>{'   '}
                   <FormControl type="text" 
-                    placeholder="e.g. Bear" 
+                    placeholder="Search Species!" 
                     onChange={this.handleCommonNameChange}/>
-                </FormGroup>{' '}
-                <Button type="submit">Send invitation</Button>
+                </FormGroup>
+                <Button bsStyle="info" type="submit">Find</Button>
               </Form>
             </Col>
             <Col md={2}>

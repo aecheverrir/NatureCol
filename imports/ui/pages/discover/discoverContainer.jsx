@@ -12,6 +12,7 @@ export default class DiscoverContainer extends Component {
 			observations: []
 		}
 		this.setSpeciesList = this.setSpeciesList.bind(this);
+		this.getObservations = this.getObservations.bind(this);
 	}
 
 	setSpeciesList(commonName) {
@@ -51,11 +52,11 @@ export default class DiscoverContainer extends Component {
 						</Col>
 					</Row>
 					<Row>
-						<Col md={4}>
+						<Col md={3}>
 							<DiscoverSpeciesList species={this.state.speciesList} />
 						</Col>
-						<Col md={8}>
-							<DiscoverList  />
+						<Col md={9}>
+							<DiscoverList observations={this.state.observations} getObservations={this.getObservations} />
 						</Col>
 					</Row>
 				</Col>

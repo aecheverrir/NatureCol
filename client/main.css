@@ -351,6 +351,10 @@ footer .copyrights p a{
     font-size: 0.9vw;
 }
 
+
+.speciesRow:hover {
+    background-color: #57D3BA;
+
 .discover_item_taxon {
     text-align: center !important;
     font-size: 0.8vw ;
@@ -364,4 +368,5 @@ footer .copyrights p a{
 .a:hover, a:visited, a:focus {
     text-decoration: none !important;
     color: black !important;
+
 }
