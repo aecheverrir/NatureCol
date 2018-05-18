@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Grid, Row, Col } from 'react-bootstrap';
 import DiscoverList from "../../components/discover/discoverList";
-
+import DiscoverSpeciesList from "../../components/discover/discoverSpeciesList";
 import DiscoverFilter from "../../components/discover/discoverFilter";
 
 export default class DiscoverContainer extends Component {
@@ -15,13 +15,14 @@ export default class DiscoverContainer extends Component {
 	}
 
 	setSpeciesList(commonName) {
+		console.log('Common Name', commonName);
 		Meteor.call('iNaturalist.getTaxonIds', commonName, (err, res) => {
 			if(err){
-				console.err(err);
+				console.log(err);
 			}
 			else{
 				this.setState({
-					speciesList: []
+					speciesList: res
 				});
 			}
 		});
@@ -34,7 +35,7 @@ export default class DiscoverContainer extends Component {
 			}
 			else {
 				this.setState({
-					observations: []
+					observations: res
 				});
 			}
 		});
@@ -42,10 +43,24 @@ export default class DiscoverContainer extends Component {
 
 	render() {
 		return(
-			<div>
-				<DiscoverFilter />
-        <DiscoverList/>
-			</div>
+			<Row>
+				<Col md={12}>
+					<Row>
+						<Col md={12}>
+							<DiscoverFilter setSpeciesList={this.setSpeciesList} />
+						</Col>
+					</Row>
+					<Row>
+						<Col md={4}>
+							<DiscoverSpeciesList species={this.state.speciesList} />
+						</Col>
+						<Col md={8}>
+							<DiscoverList  />
+						</Col>
+					</Row>
+				</Col>
+			</Row>
+			
 		);
 	}
 }
