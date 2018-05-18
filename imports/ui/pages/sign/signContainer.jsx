@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Grid, Row, Col } from 'react-bootstrap';
+import Sign from "../../components/Sign";
 
 export default class SignContainer extends Component {
 	constructor(props) {
@@ -11,13 +12,7 @@ export default class SignContainer extends Component {
 
 	render() {
 		return(
-			<div>
-				<Row>
-					<Col md={12}>
-						
-					</Col>
-				</Row>
-			</div>
+			<Sign />
 		);
 	}
 }
