@@ -16,6 +16,7 @@ export default class DiscoverFilter extends Component {
     if(this.state.commonName.length > 0){
       //Does something
       console.log('Query Param:', this.state.commonName);
+      this.props.setSpeciesList(this.state.commonName);
     }
     else{
       //Does something else
