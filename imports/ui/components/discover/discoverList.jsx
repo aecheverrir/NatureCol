@@ -13,15 +13,17 @@ class DiscoverList extends Component {
     }
   }
 
-  componentDidMount() {
-    const queryParams = {};
-    Meteor.call("iNaturalist.getObservations", queryParams, 1, 1, (err, res) => {
-      console.log(this);
-      this.setState({
-        data: res,
-      });
-    });
-  }
+    componentDidMount() {
+        const queryParams = {
+            photos: "true"
+        };
+        Meteor.call("iNaturalist.getObservations", queryParams, 1, 1, (err, res) => {
+            this.setState({
+                data: res,
+            });
+        });
+    }
+
 
   renderItems() {
     return this.state.data.map((item) => {

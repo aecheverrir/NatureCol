@@ -330,11 +330,38 @@ footer .copyrights p a{
 
 /* Discover Item */
 .discover_item {
-    border: 1px solid #e7e7e7;
-    margin: 4px 0;
+    border: 1px solid #e7e7e7 !important;
+    margin: 4px 0 !important;
     height: 200px;
 }
 
 .discover_item_img {
-    
+    height: 70%;
+    width: 100%;
+    object-fit: cover !important;   
+}
+
+.discover_item_info {
+    padding: 5px !important;
+}
+
+.discover_item_name {
+    text-align: center !important;
+    font-weight: 600;
+    font-size: 0.9vw;
+}
+
+.discover_item_taxon {
+    text-align: center !important;
+    font-size: 0.8vw ;
+}
+
+.item_unknown {
+    font-style: italic;
+    color: #8c8c8c;
+}
+
+.a:hover, a:visited, a:focus {
+    text-decoration: none !important;
+    color: black !important;
 }
