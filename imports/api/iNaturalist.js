@@ -43,7 +43,7 @@ Meteor.methods({
   'iNaturalist.getTaxonIds'(CommonName){
     check(CommonName, String);
     let res = [];
-    if(!something.trim().length == 0){
+    if (!CommonName.trim().length == 0){
       let urlCommand = INATURALIST_URL + TAXA + COLOMBIA_PLACE + AMPERSANT + PREFERRED_COMMON_NAME + IS_EQUAL + CommonName;
       apiCallLog("GET", urlCommand);
       try {
