@@ -12,7 +12,8 @@ const TAXA = 'taxa?';
 const AMPERSANT = '&';
 const IS_EQUAL = '=';
 const COLOMBIA_PLACE = 'place_id=7196';
-const 
+const PER_PAGE = 'per_page';
+const PAGE = 'page';
 
 const PREFERRED_COMMON_NAME = 'q';
 
