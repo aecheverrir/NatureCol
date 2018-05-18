@@ -13,6 +13,10 @@ class ObservationDetail extends Component {
     }
 
     componentDidMount() {
+        const id = this.props.oid +"";
+        Meteor.call("iNaturalist.getObservationById", id, (err,res) => {
+            this.setState()
+        });
     }
 
     render() {

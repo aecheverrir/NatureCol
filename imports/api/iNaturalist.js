@@ -108,6 +108,28 @@ Meteor.methods({
     }
 
   },
+  'iNaturalist.getObservationById'(observationId){
+    
+    //Verificacion basica de los inputs
+    check(observationId, String);
+
+    let urlCommand = INATURALIST_URL + "observations/"+ observationId;
+
+    apiCallLog("QUERY", urlCommand);
+
+    try {
+      let res = HTTP.get(urlCommand);
+      if (res) {
+        return res.data.results;
+      }
+      else {
+        return null;
+      }
+    }
+    catch (error) {
+      apiCallLog("ERROR detected! ", error);
+    }
+  },
   'iNaturalist.getObservations.species'(queryParams, pageNum, itemsPerPage) {
 
     //Verificacion basica de los inputs
