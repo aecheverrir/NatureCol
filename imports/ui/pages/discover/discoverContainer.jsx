@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import { Grid, Row, Col } from 'react-bootstrap';
-import Profile from "../../components/Profile";
 
-export default class ProfileContainer extends Component {
+export default class DiscoverContainer extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -15,7 +14,7 @@ export default class ProfileContainer extends Component {
 			<div>
 				<Row>
 					<Col md={12}>
-                        <Profile />
+						<h1>Discover Container</h1>
 					</Col>
 				</Row>
 			</div>
