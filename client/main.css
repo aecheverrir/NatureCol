@@ -38,6 +38,13 @@ html, body, div, span, object, iframe,
         background:transparent;
     }
 
+    .container-fluid {
+        padding-right: 0px !important;
+        padding-left: 0px !important;
+        margin-right: 0px !important;
+        margin-left: 0px !important;
+    }
+
     body {
         line-height:1;
         padding-top: 0px;
@@ -109,24 +116,28 @@ html, body, div, span, object, iframe,
         vertical-align:middle;
     }
 
-    div {
-        padding: 0;
+    a {
+        text-decoration: none !important;
     }
 
-    .container-fluid {
-        padding-right: 0px;
-        padding-left: 0px;
-        margin-right: auto;
-        margin-left: auto;
-    }
-
-.navegationBar {
-    list-style-type: none;
-    margin-bottom: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #6ceaad;
+/* Navigation bar*/
+.site-header {
+    background-color: rgba(108, 234, 173, .85);
 }
+
+
+a:hover {
+    color:  #8c8c8c !important;
+    text-decoration: none !important;
+}
+
+.site-header a {
+    color: #fff;
+    font-size: 15px;
+    transition: ease-in-out color .15s;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+}    
 
 .wrapper{
     width: 100%;
@@ -138,15 +149,12 @@ li a {
     display: block;
     color: white;
     text-align: center;
-    padding: 14px 16px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
 	text-decoration: none;
 	float: right;
-}
-
-li a:hover:not(.active) {
-	background-color: #65EBF6;
-	text-decoration: none;
-	color: #8c8c8c;
 }
 
 .logoNav {
@@ -319,3 +327,4 @@ footer .copyrights p a{
     color: #ffffff;
     text-decoration: none;
 }
+

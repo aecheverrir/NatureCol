@@ -25,7 +25,7 @@ export default class Footer extends React.Component{
                                 </section>
                             </Col>
 
-                            <Col sm={6}>
+                            <Col sm={4}>
                                 <section className="adress">
                                     <p>Horario</p>
                                     <p className="location">Lunes-Domingo<br/>
@@ -33,7 +33,7 @@ export default class Footer extends React.Component{
                                 </section>
                             </Col>
 
-                            <Col sm={3}>
+                            <Col sm={5}>
                                 <section className="copyrights">
                                     <h3> NatureCol </h3>
                                     <p>© All Rights Reserved 2018.</p>

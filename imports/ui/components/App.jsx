@@ -4,6 +4,7 @@ import { Meteor } from "meteor/meteor";
 import { withRouter  } from "react-router-dom";
 import { withTracker  } from "meteor/react-meteor-data";
 import NavBar from "./NavBar";
+import NavigationBar from "./NotLoggedNavBar"
 import MainView from "./mainView";
 import Footer from "./Footer.jsx";
 
