@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Grid, Row, Col } from 'react-bootstrap';
-import CardsList from "../../components/observation/CardsList";
+import DiscoverList from "../../components/discover/discoverList";
 
 export default class DiscoverContainer extends Component {
 	constructor(props) {
@@ -16,7 +16,7 @@ export default class DiscoverContainer extends Component {
 				<Row>
 					<Col md={12}>
 						<h1>Discover Container</h1>
-						<CardsList/>
+						<DiscoverList/>
 					</Col>
 				</Row>
 			</div>
