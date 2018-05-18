@@ -39,6 +39,7 @@ class DiscoverList extends Component {
                         </Row>
                     </Col>
                 </Row>
+                
             </Container>
         );
     }
