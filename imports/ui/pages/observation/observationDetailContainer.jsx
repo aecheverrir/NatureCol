@@ -1,11 +1,12 @@
 import React, { Component } from "react";
-import { Grid, Row, Col } from 'react-bootstrap';
-import { Link } from "react-router-dom";
-
+import { Container, Row, Col, Button } from "reactstrap";
+import { Meteor } from "meteor/meteor";
+import { withRouter } from "react-router-dom";
+import { withTracker } from "meteor/react-meteor-data";
+import ObservationDetail from "../../components/observation/ObservationDetail.jsx";
 const queryString = require('query-string');
 
-
-export default class ObservationDetailContainer extends Component {
+class ObservationDetailContainer extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -14,20 +15,22 @@ export default class ObservationDetailContainer extends Component {
     }
     
     componentDidMount() {
-        const params = queryString.parse(this.props.location.search);
-        console.log(params);
-        console.log(params.oid);
     }
 
 	render() {
 		return(
 			<div>
-				<Row>
-					<Col md={12}>
-                        <Link to="/observation/detail?oid=3">algo</Link>
-					</Col>
-				</Row>
+				<Container>
+					<ObservationDetail oid={this.props.oid}/>
+				</Container>
 			</div>
 		);
 	}
 }
+
+export default withTracker((props) => {
+	const params = queryString.parse(props.location.search);
+    return {
+		oid: params.oid
+    };
+})(ObservationDetailContainer);

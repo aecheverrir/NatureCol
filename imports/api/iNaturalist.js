@@ -90,7 +90,7 @@ Meteor.methods({
     //Se itera en las llaves del JSON, que son los nombres de los query params,
     //para formar la URL de la consulta.
     Object.keys(queryParams).forEach((key) =>{
-      urlCommand += AMPERSANT + key + IS_EQUAL + data[key];
+      urlCommand += AMPERSANT + key + IS_EQUAL + queryParams[key];
     });
     apiCallLog("QUERY", urlCommand);
 

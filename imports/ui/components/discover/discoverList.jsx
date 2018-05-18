@@ -14,9 +14,10 @@ class DiscoverList extends Component {
     }
 
     componentDidMount() {
-        const queryParams = {};
+        const queryParams = {
+            photos: "true"
+        };
         Meteor.call("iNaturalist.getObservations", queryParams, 1, 1, (err, res) => {
-            console.log(this);
             this.setState({
                 data: res,
             });
