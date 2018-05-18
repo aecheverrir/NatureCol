@@ -4,7 +4,7 @@ import { Row, Col } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 
 import HomeContainer from "../pages/home/homeContainer";
-import DiscoverContainer from "../pages/observation/observationDetailContainer";
+import DiscoverContainer from "../pages/discover/discoverContainer";
 import ProfileContainer from "../pages/profile/profileContainer";
 import ObservationDetailContainer from "../pages/observation/observationDetailContainer";
 import SignContainer from "../pages/sign/signContainer";

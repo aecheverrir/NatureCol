@@ -7,10 +7,14 @@ const OBSERVATION = 'observations?';
 const SPECIES_COUNT = 'observations/species_counts?';
 const OBSERVERS = 'observations/observers?';
 const IDENTIFIERS = 'observations/identifiers?';
+const TAXA = 'taxa?';
 
 const AMPERSANT = '&';
 const IS_EQUAL = '=';
 const COLOMBIA_PLACE = 'place_id=7196';
+const 
+
+const PREFERRED_COMMON_NAME = 'q';
 
 function apiCallLog(rest, url) {
   console.log(rest + " API Call");
@@ -35,6 +39,26 @@ Meteor.methods({
       apiCallLog("ERROR detected! ", error);
     }
   },
+  'iNaturalist.getTaxonIds'(CommonName){
+    check(CommonName, String);
+    let res = [];
+    if(!something.trim().length == 0){
+      let urlCommand = INATURALIST_URL + TAXA + COLOMBIA_PLACE + AMPERSANT + PREFERRED_COMMON_NAME + IS_EQUAL + CommonName;
+      apiCallLog("GET", urlCommand);
+      try {
+        let res = HTTP.get(urlCommand);
+        if (res) {
+          return res.data.results;
+        }
+        else {
+          return null;
+        }
+      }
+      catch (error) {
+        apiCallLog("ERROR detected! ", error);
+      }
+    }
+  },
   'iNaturalist.getObservations'(queryParams, pageNum, itemsPerPage){
     
     //Verificacion basica de los inputs
@@ -44,6 +68,7 @@ Meteor.methods({
 
     //Verificacion detallada del JSON con los query params
     check(queryParams,{
+      taxon_id: Match.Maybe(String),
       captive: Match.Maybe(String),
       verifiable: Match.Maybe(String),
       quality_grade: Match.Maybe(String),
