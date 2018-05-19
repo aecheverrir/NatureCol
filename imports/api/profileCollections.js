@@ -23,7 +23,6 @@ Meteor.methods({
         check(obs,{
           id: Match.OneOf(String, Number),
           url: String,
-          species_guess: Match.Maybe(String),
           description: Match.Maybe(String),
         });
       }
@@ -51,8 +50,7 @@ Meteor.methods({
         check(obs, {
           id: Match.OneOf(String, Number),
           url: String,
-          species_guess: Match.Maybe(String),
-          description: Match.Maybe(String),
+          description: Match.Maybe(String)
         });
       }
       return true;
@@ -62,9 +60,11 @@ Meteor.methods({
       $and: [
         { _id: collectionJSON._id },
         { ownerId: collectionJSON.ownerId }
-      ],
-      $set: { observations: collectionJSON.observations}
-    });
+      ]},
+      {
+      $set: { 
+        observations: collectionJSON.observations
+    }});
 
   },
   'collections.remove'(collectionJSON) {

@@ -16,7 +16,11 @@ export default class NavBar extends React.Component{
                 <Container className="d-flex flex-column flex-md-row justify-content-between">
                     <Link to="/" className="py-2 d-none d-md-inline-block" >Home</Link>
                     <Link to="/discover" className="py-2 d-none d-md-inline-block" >Discover</Link>
-                    <Link to="/sign" className="py-2 d-none d-md-inline-block" > Sign In</Link>
+                    {this.props.currentUser ? 
+                        <Link to="/profile" className="py-2 d-none d-md-inline-block" > My Profile</Link>
+                        :
+                        <Link to="/sign" className="py-2 d-none d-md-inline-block" > Sign In</Link>
+                    }
                 </Container>
             </nav>
         )

@@ -349,6 +349,7 @@ footer .copyrights p a{
     text-align: center !important;
     font-weight: 600;
     font-size: 0.9vw;
+    color: black !important;
 }
 
 
@@ -356,9 +357,14 @@ footer .copyrights p a{
     background-color: #57D3BA;
 }
 
+.speciesRowSelected{
+    background-color: #57D3BA;
+}
+
 .discover_item_taxon {
     text-align: center !important;
     font-size: 0.8vw ;
+    color: black !important;
 }
 
 .item_unknown {
