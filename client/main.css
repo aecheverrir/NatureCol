@@ -377,3 +377,28 @@ footer .copyrights p a{
     color: black !important;
 
 }
+
+/* Observation Detail */
+#button-detail {
+    margin-top: 5px;
+    width: 100%;
+}
+
+#observation-detail{
+    margin-top: 5px;
+    width: 100%;
+    max-width: 130px;
+}
+
+.attributesDetail {
+    color: #323232;
+}
+
+.valuesDetail {
+    color: #8c8c8c;
+}
+
+.detail-name {
+    color: #323232;
+    font-style: italic;
+}
