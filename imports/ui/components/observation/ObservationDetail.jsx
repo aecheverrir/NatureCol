@@ -4,13 +4,31 @@ import { Meteor } from "meteor/meteor";
 import { withRouter } from "react-router-dom";
 import { withTracker } from "meteor/react-meteor-data";
 import GoogleMapReact from 'google-map-react';
+import ReactDOM from 'react-dom';
+
+import { Comments } from '../../../api/comments.js';
+import Comment from './Comment.jsx';
+
 
 class ObservationDetail extends Component {
+
     constructor(props) {
         super(props);
         this.state = {
 
         }
+    }
+
+    handleSubmit(event) {
+        event.preventDefault();
+     
+        // Find the text field via the React ref
+        const text = ReactDOM.findDOMNode(this.refs.textInput).value.trim();
+     
+        Meteor.call('comments.insert', text);
+     
+        // Clear form
+        ReactDOM.findDOMNode(this.refs.textInput).value = '';
     }
 
     componentDidMount() {
@@ -41,9 +59,24 @@ class ObservationDetail extends Component {
         });
     }
 
+    getComments() {
+        return [
+          { _id: 1, text: 'This is comment 1' },
+          { _id: 2, text: 'This is comment 2' },
+          { _id: 3, text: 'This is comment 3' },
+        ];
+    }
+     
+    renderComments() {
+        return this.props.comments.map((comment) => (
+          <Comment key={comment._id} comment={comment} />
+        ));
+    }
+
     render() {
         const center = {lat: 59.95, lng: 40.33};
         const zoom = 11;
+        const keyMAPS = "AIzaSyDalyRdzR3c2Xlq58CX4eT-zbc0UXoHYD8";
         return(
             <div>
                 {this.state.data ? 
@@ -74,7 +107,7 @@ class ObservationDetail extends Component {
                                         </Col>
                                         <Col sm={8}>
                                             <div>
-                                                <h4 className="valuesDetail"> {this.state.data.identifications[0].user.login} </h4>
+                                                <h4 className="valuesDetail"> {this.state.data.identifications[0] ? this.state.data.identifications[0].user.login : "-unknown-"} </h4>
                                                 <h4 className="valuesDetail"> {this.state.data.created_at_details.date} </h4>
                                             </div>
                                         </Col>
@@ -85,6 +118,7 @@ class ObservationDetail extends Component {
                                                 defaultCenter={center}
                                                 defaultZoom={zoom}
                                                 style={{height: '300px'}}
+                                                key={keyMAPS}
                                             >
                                             </GoogleMapReact>
                                         </Col>
@@ -92,6 +126,21 @@ class ObservationDetail extends Component {
                                 </Col>
                             </Row>
                         </Grid>
+                        <hr/>
+                        <h2>Comments ({this.props.commentCount}) </h2>
+                        {this.renderComments()}
+                            { this.props.currentUser ?
+                            <form className="new-task" onSubmit={this.handleSubmit.bind(this)} >
+                            <input
+                                type="text"
+                                ref="textInput"
+                                placeholder="Type to add new comments"
+                            />
+                            </form> : ''
+                        }
+                        
+
+
                     </div>
                 : 
                     <h3> Cargando... </h3>
@@ -101,7 +150,11 @@ class ObservationDetail extends Component {
     }
 }
 
-export default withTracker((props) => {
+export default withTracker(() => {
+    Meteor.subscribe('comments');
     return {
+        comments: Comments.find({}, { sort: { createdAt: -1 } }).fetch(),
+        commentCount: Comments.find({}).count(),
+        currentUser: Meteor.user(),
     };
-})(ObservationDetail);
+  })(ObservationDetail);
