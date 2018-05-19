@@ -23,8 +23,8 @@ export class App extends Component {
 	render() {
 		return (
 			<Grid fluid>
-				<NavBar />
-				<MainView />
+				<NavBar currentUser={this.props.currentUser}/>
+				<MainView currentUser={this.props.currentUser}/>
 				<Footer />
 			</Grid>
 		);

@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import { Grid, Row, Col } from 'react-bootstrap';
-import Sign from "../../components/Sign";
+import { withRouter } from "react-router-dom";
+import { withTracker } from "meteor/react-meteor-data";
+import SignIn from "../../components/Sign";
 
-export default class SignContainer extends Component {
+class SignContainer extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -12,7 +14,15 @@ export default class SignContainer extends Component {
 
 	render() {
 		return(
-			<Sign />
+			<SignIn />
 		);
 	}
 }
+
+export default withRouter(
+	withTracker((props) => {
+		return {
+
+		};
+	})(SignContainer)
+);

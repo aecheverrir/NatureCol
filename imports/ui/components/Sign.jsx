@@ -1,19 +1,24 @@
 import React, { Component } from "react";
-import { Container, Row, Col, Button } from "reactstrap";
+import { Grid, Row, Col, ButtonGroup, Button, Image, Form, FormGroup, ControlLabel, FormControl } from "react-bootstrap";
 import { Meteor } from "meteor/meteor";
 import { withRouter } from "react-router-dom";
 import { withTracker } from "meteor/react-meteor-data";
 
-export default class Profile extends React.Component{
+class SignIn extends React.Component {
 
-    constructor(props) {
+	constructor(props) {
 		super(props);
 		this.state = {
 			signUpMode: false,
+			username: '',
+			name: '',
+			email: '',
+			password: ''
 		}
 	}
 
-	componentDidMount() {
+	componentDidMount(){
+		console.log(this.props);
 	}
 
 	changeLog(e) {
@@ -23,71 +28,164 @@ export default class Profile extends React.Component{
 		});
 	}
 
-	signUpWithPassword(e) {
+	signUpToApp(e) {
 		e.preventDefault();
 		Accounts.createUser({
-			username: this.refs.sign_username.value,
-			name: this.refs.sign_username.value,
-			email: this.refs.sign_email.value,
-			password: this.refs.sign_password.value,
+			username: this.state.username,
+			name: this.state.name,
+			email: this.state.email,
+			password: this.state.password,
 		}, (error) => {
-			if(error) throw error;
+			if (error) throw error;
+			console.log('props.history', this.props.history);
 			this.props.history.push("/");
 		});
 	}
 
-	enterWithPassword(e) {
+	loginToApp(e) {
 		e.preventDefault();
-		Meteor.loginWithPassword(this.refs.log_username.value, this.refs.log_password.value , (error) => {
-			if(error) throw error;
+		Meteor.loginWithPassword(this.state.username, this.state.password, (error) => {
+			if (error) throw error;
+			console.log('props.history', this.props.history);
 			this.props.history.push("/");
 		});
 
-	} 
-
-	renderForm() {
-		if(this.state.signUpMode) {
-			return(			
-				<form>
-					<div className="change_log">
-						<button className="change_log_login" onClick={this.changeLog.bind(this)}>
-							Log In							
-						</button>
-						<button className="change_log_sign change_active" onClick={this.changeLog.bind(this)}>
-							Sign Up
-						</button>
-					</div>
-					<input type="text" placeholder="Username" ref="sign_username" className="enter_input" aria-label="Username input field"/>
-					<input type="email" placeholder="Email" ref="sign_email" className="enter_input" aria-label="Email input field"/>
-					<input type="password" placeholder="Password" ref="sign_password" className="enter_input" aria-label="Password input field"/>
-					<button className="enter_submit" onClick={this.signUpWithPassword.bind(this)}>Sign Up</button>
-				</form>
-			);
-		} else {
-			return(
-				<form>
-					<div className="change_log">
-						<button className="change_log_login change_active" onClick={this.changeLog.bind(this)}>
-							Log In							
-						</button>
-						<button className="change_log_sign" onClick={this.changeLog.bind(this)}>
-							Sign Up
-						</button>
-					</div>
-					<input type="text" placeholder="Username" ref="log_username" className="enter_input" aria-label="Username input field"/>
-					<input type="password" placeholder="Password" ref="log_password" className="enter_input" aria-label="Password input field"/>
-					<button className="enter_submit" onClick={this.enterWithPassword.bind(this)}>Log In</button>
-				</form>
-			);
-		}
 	}
 
-    render(){
-        return(
-            <Row className="enter_form justify-content-center">
-                <div className="enter_form_title">NatureCol</div>
-                {this.renderForm()}
-            </Row>
-        );
-    }
+	changeUsername(e) {
+		console.log(e.target.value);
+		this.setState({
+			username: e.target.value
+		});
+	}
+
+	changeName(e) {
+		console.log(e.target.value);		
+		this.setState({
+			name: e.target.value
+		});
+	}
+
+	changeEmail(e) {
+		console.log(e.target.value);		
+		this.setState({
+			email: e.target.value
+		});
+	}
+
+	changePassword(e) {
+		console.log(e.target.value);
+		this.setState({
+			password: e.target.value
+		});
+	}
+
+	render() {
+		return (
+			<Row >
+				<Col md={5}>
+					<Row>
+						<Col md={12} 
+							style={{
+								textAlign: 'center',
+								marginTop: 'auto',
+								marginBottom: 'auto'
+							}}>
+							<h1 style={{ color:'#8c8c8c'}}>Welcome to NatureCol</h1>
+							<br />
+							<h3>
+								{this.state.signUpMode ? 
+									"Create an Account to search and find all about Colombia's Nature!"
+									:
+									"Login and continue exploring Colombia's Nature"
+								}
+							</h3>
+						</Col>
+					</Row>
+					<Row>
+						<Col md={12}>
+							<Form horizontal onSubmit={this.state.signUpMode ? this.signUpToApp.bind(this) : this.loginToApp.bind(this)}>
+
+								{this.state.signUpMode ?
+									<FormGroup controlId="formHorizontalName">
+										<Col componentClass={ControlLabel} sm={3}>
+											Name
+   					 			</Col>
+										<Col sm={9}>
+											<FormControl onChange={this.changeName.bind(this)} type="text" placeholder="Type your name" />
+										</Col>
+									</FormGroup>
+									:
+									null
+								}
+
+								{this.state.signUpMode ?
+									<FormGroup controlId="formHorizontalEmail">
+										<Col componentClass={ControlLabel} sm={3}>
+											Email
+   					 			</Col>
+										<Col sm={9}>
+											<FormControl onChange={this.changeEmail.bind(this)} type="email" placeholder="Type your Email" />
+										</Col>
+									</FormGroup>
+									:
+									null
+								}
+
+								<FormGroup controlId="formHorizontalEmail">
+									<Col componentClass={ControlLabel} sm={3}>
+										Username
+    							</Col>
+									<Col sm={9}>
+										<FormControl onChange={this.changeUsername.bind(this)} type="text" placeholder="Type your username" />
+									</Col>
+								</FormGroup>
+
+								<FormGroup controlId="formHorizontalPassword">
+									<Col componentClass={ControlLabel} sm={3}>
+										Password
+   					 			</Col>
+									<Col sm={9}>
+										<FormControl onChange={this.changePassword.bind(this)} type="password" placeholder="Password" />
+									</Col>
+								</FormGroup>
+
+								<FormGroup>
+									<Col smOffset={3} sm={9}>
+										<Button block bsStyle="success" type="submit"
+											style={{ 
+												backgroundColor: (this.state.signUpMode ? '#6ceaad' : '#65EBF6'),
+												borderColor: (this.state.signUpMode ? '#6ceaad' : '#65EBF6')
+											}}>
+											{this.state.signUpMode ? 'Sign Up' : 'Login'}
+										</Button>
+									</Col>
+								</FormGroup>
+
+								<FormGroup>
+									<Col smOffset={3} sm={9}>
+										<Button block bsStyle="link" onClick={this.changeLog.bind(this)}>
+											{this.state.signUpMode ? 'Or login' : 'Or signup'}
+										</Button>
+									</Col>
+								</FormGroup>
+
+							</Form>
+						</Col>
+					</Row>
+					
+				</Col>
+				<Col md={7}>
+					<Image src="images/lorosLogin.jpg" thumbnail />
+				</Col>
+			</Row>
+		);
+	}
 }
+export default withRouter(
+	withTracker((props) => {
+		return {
+
+		};
+	})(SignIn)
+);

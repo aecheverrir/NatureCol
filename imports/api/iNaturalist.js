@@ -108,7 +108,6 @@ Meteor.methods({
     catch (error) {
       apiCallLog("ERROR detected! ", error);
     }
-
   },
   'iNaturalist.getObservationById'(observationId){
     

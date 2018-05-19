@@ -31,21 +31,25 @@ export default class DiscoverFilter extends Component {
       <Row>
         <Col className='' md={12}>
           <Row>
-            <Col md={4}>
-              <h1>Discover </h1>
-            </Col>
-            <Col md={6}>
-              <Form inline onSubmit={this.handleSpeciesSubmit}
-                style={{marginTop: '10px'}}>
-                <FormGroup controlId="formInlineName">
-                  <FormControl type="text" 
-                    placeholder="Search Species!" 
-                    onChange={this.handleCommonNameChange}/>
+            <Col md={3}>
+              <Form onSubmit={this.handleSpeciesSubmit}
+                style={{ marginTop: '10px' }}>
+                <FormGroup controlId="formInlineName"
+                  style={{ marginBottom: '0px' }}>
+                  <ControlLabel>
+                    {this.state.commonName.length === 0 ?'First, Search for a Species' : 'Now, Select one of the results!'}
+                  </ControlLabel>
+                  <FormControl
+                    type="text"
+                    placeholder="Search Species!"
+                    onChange={this.handleCommonNameChange}
+                  />
                 </FormGroup>
-                <Button bsStyle="info" type="submit">Find</Button>
+                
+                <Button block bsStyle="info" type="submit">Find</Button>
               </Form>
             </Col>
-            <Col md={2}>
+            <Col md={9}>
               
             </Col>
           </Row>
