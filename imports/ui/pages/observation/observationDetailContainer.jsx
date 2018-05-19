@@ -21,7 +21,7 @@ class ObservationDetailContainer extends Component {
 		return(
 			<div>
 				<Container>
-					<ObservationDetail oid={this.props.oid}/>
+					<ObservationDetail oid={this.props.oid} currentUser={this.props.currentUser}/>
 				</Container>
 			</div>
 		);

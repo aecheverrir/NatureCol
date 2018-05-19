@@ -1,22 +1,25 @@
 import React, { Component } from "react";
-import { Row, Col, Grid , Button, FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
+import { Row, Col, Grid, Button, FormGroup, ControlLabel, FormControl, Image } from 'react-bootstrap';
 import { Meteor } from "meteor/meteor";
 import { withRouter } from "react-router-dom";
 import { withTracker } from "meteor/react-meteor-data";
+import { ProfileCollections } from '../../../api/profileCollections';
+
 
 class ObservationDetail extends Component {
     constructor(props) {
         super(props);
         this.state = {
-
+            collectionSelected: -1,
+            coordinates:[]
         }
     }
 
     componentDidMount() {
-        const id = this.props.oid +"";
-        Meteor.call("iNaturalist.getObservationById", id, (err,res) => {
-            if (!err)
-            {
+        const id = this.props.oid + "";
+
+        Meteor.call("iNaturalist.getObservationById", id, (err, res) => {
+            if (!err) {
                 console.log(res[0]);
                 this.setState(
                     {
@@ -28,40 +31,65 @@ class ObservationDetail extends Component {
     }
 
     renderOptions() {
+        return this.props.myCollections.map((item, index) => {
+            return <option key={item._id} value={index}>{item.name}</option>
+        });
+    }
 
-        /* example array of albums */
-        var albms = [];
-        albms.push({ id:1, name:"Album1"});
-        albms.push({ id:2, name:"Album2"});
-        albms.push({ id:3, name:"Album3"});
+    handleSubmit(e) {
+        e.preventDefault();
 
-        return albms.map((item) => {
-          return <option key={item.id} value={item.id}>{item.name}</option>
+        if(this.state.collectionSelected >= 0){
+            let collectionJson = this.props.myCollections[this.state.collectionSelected];
+            let observ = collectionJson.observations;
+            observ.push({
+                id: this.state.data.id,
+                url: this.state.data.photos[0].url,
+                description: ''
+            });
+            collectionJson.observations = observ;
+            Meteor.call('collections.update', collectionJson, (err)=>{
+                if(err){
+                    console.log(err);
+                }
+            });
+        }
+    }
+
+    handleSelect(event) {
+        console.log(event.target.value);
+        this.setState({
+            collectionSelected: event.target.value
         });
     }
 
     render() {
-        return(
+        return (
             <div>
-                {this.state.data ? 
+                {this.state.data ?
                     <div>
                         <h2 className="detail-name"> {this.state.data.species_guess} </h2>
-                        <hr/>
+                        <hr />
                         <Grid>
                             <Row>
-                                <Col sm={3}>
-                                    <img src={this.state.data.photos[0].url} alt="observation photo" height="100" width="100" />
-                                        <form id="observation-detail">
+                                <Col sm={6}>
+                                    <Image src={this.state.data.photos[0].url.replace('square', 'medium')} alt="observation photo" />
+                                    {this.props.currentUser ?
+                                        <form id="observation-detail" onSubmit={this.handleSubmit.bind(this)}>
                                             <FormGroup controlId="formControlsSelect">
-                                                <FormControl componentClass="select" placeholder="select">
+                                                <FormControl componentClass="select"
+                                                    onChange={this.handleSelect.bind(this)} placeholder="Select Collection">
+                                                    <option value="select">select</option>
                                                     {this.renderOptions()}
-                                                    <option value="new">Create New Album </option>
-                                                </FormControl>    
+                                                </FormControl>
                                                 <Button bsStyle="info" id="button-detail" type="submit">Save Favorite</Button>
-                                            </FormGroup> 
-                                        </form>                                 
+                                            </FormGroup>
+                                        </form>
+                                        :
+                                        null
+                                    }
                                 </Col>
-                                <Col sm={9}>
+                                <Col sm={6}>
                                     <Row>
                                         <Col sm={4}>
                                             <div>
@@ -85,15 +113,17 @@ class ObservationDetail extends Component {
                             </Row>
                         </Grid>
                     </div>
-                : 
+                    :
                     <h3> Cargando... </h3>
                 }
-            </div> 
+            </div>
         );
     }
 }
 
 export default withTracker((props) => {
+    Meteor.subscribe('myCollections');
     return {
+        myCollections: ProfileCollections.find({}).fetch(),
     };
 })(ObservationDetail);
