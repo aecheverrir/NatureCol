@@ -11,7 +11,8 @@ export default class DiscoverContainer extends Component {
 			speciesList: [],
 			observations: [],
 			observationsMaxPage: 1,
-			speciesMaxPage: 1
+			speciesMaxPage: 1,
+			savedQuery:{} 
 		}
 		this.setSpeciesList = this.setSpeciesList.bind(this);
 		this.getObservations = this.getObservations.bind(this);
@@ -32,14 +33,20 @@ export default class DiscoverContainer extends Component {
 	}
 
 	getObservations(queryParams, pageNum) {
-		Meteor.call('iNaturalist.getObservations', queryParams, pageNum, (err, res) => {
+		let params =queryParams;
+		if (params === null){
+			params = this.state.savedQuery;
+		}
+
+		Meteor.call('iNaturalist.getObservations', params, pageNum, (err, res) => {
 			if (err) {
 				console.log(err);
 			}
 			else {
 				this.setState({
 					observations: res.results,
-					observationsMaxPage: Math.ceil(res.total_results / res.per_page)
+					observationsMaxPage: Math.ceil(res.total_results / res.per_page),
+					savedQuery: params
 				});
 			}
 		});
@@ -56,10 +63,16 @@ export default class DiscoverContainer extends Component {
 					</Row>
 					<Row>
 						<Col md={3}>
-							<DiscoverSpeciesList getObservations={this.getObservations} species={this.state.speciesList} />
+							<DiscoverSpeciesList 
+								getObservations={this.getObservations} 
+								species={this.state.speciesList}
+									 />
 						</Col>
 						<Col md={9}>
-							<DiscoverList observations={this.state.observations} getObservations={this.getObservations} />
+							<DiscoverList 
+								observations={this.state.observations}
+								maxPage={this.state.observationsMaxPage}
+								getObservations={this.getObservations} />
 						</Col>
 					</Row>
 				</Col>

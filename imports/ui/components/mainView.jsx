@@ -25,7 +25,7 @@ export default class MainView extends Component {
       <Switch>
         <Route exact path='/' name='homePage' render={(props) => <HomeContainer {...props} />} />
         <Route path='/discover' name='discoverPage' render={(props) => <DiscoverContainer {...props} />} />
-        <Route path='/observation/detail' name='observationDetail' render={(props) => <ObservationDetailContainer {...props} />} />
+        <Route path='/observation/detail' name='observationDetail' render={(props) => <ObservationDetailContainer {...props} currentUser={this.props.currentUser} />} />
         {this.props.currentUser ? 
           <Route path='/profile' name='profilePage' render={(props) => <ProfileContainer {...props} currentUser={this.props.currentUser}/>} />
           :

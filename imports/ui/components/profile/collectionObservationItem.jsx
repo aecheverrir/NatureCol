@@ -20,7 +20,7 @@ class CollectionObservationItem extends Component {
       <Col md="3">
         <Link to={"/observation/detail?oid=" + this.props.data.id}>
           <div className="discover_item">
-            <img href="/" src={this.props.data.url} alt="observation image" className="discover_item_img" />
+            <img href="/" src={this.props.data.url.replace('square','medium')} alt="observation image" className="discover_item_img" />
           </div>
         </Link>
       </Col>

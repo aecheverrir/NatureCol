@@ -20,7 +20,7 @@ class DiscoverItem extends Component {
             <Col md="3">
                 <Link to={"/observation/detail?oid=" + this.props.data.id}>
                 <div className="discover_item">
-                    <img href="/" src={this.props.data.photos[0].url} alt="observation image" className="discover_item_img" />
+                    <img href="/" src={this.props.data.photos[0].url.replace('square','medium')} alt="observation image" className="discover_item_img" />
                     <div className="discover_item_info"> 
                         { this.props.data.species_guess ?
                             <div className="discover_item_name">{this.props.data.species_guess}</div> :

@@ -17,10 +17,6 @@ class SignIn extends React.Component {
 		}
 	}
 
-	componentDidMount(){
-		console.log(this.props);
-	}
-
 	changeLog(e) {
 		e.preventDefault();
 		this.setState({
@@ -37,7 +33,6 @@ class SignIn extends React.Component {
 			password: this.state.password,
 		}, (error) => {
 			if (error) throw error;
-			console.log('props.history', this.props.history);
 			this.props.history.push("/");
 		});
 	}
@@ -46,35 +41,30 @@ class SignIn extends React.Component {
 		e.preventDefault();
 		Meteor.loginWithPassword(this.state.username, this.state.password, (error) => {
 			if (error) throw error;
-			console.log('props.history', this.props.history);
 			this.props.history.push("/");
 		});
 
 	}
 
 	changeUsername(e) {
-		console.log(e.target.value);
 		this.setState({
 			username: e.target.value
 		});
 	}
 
 	changeName(e) {
-		console.log(e.target.value);		
 		this.setState({
 			name: e.target.value
 		});
 	}
 
 	changeEmail(e) {
-		console.log(e.target.value);		
 		this.setState({
 			email: e.target.value
 		});
 	}
 
 	changePassword(e) {
-		console.log(e.target.value);
 		this.setState({
 			password: e.target.value
 		});
