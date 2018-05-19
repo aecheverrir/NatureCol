@@ -3,6 +3,7 @@ import { Row, Col, Grid , Button, FormGroup, ControlLabel, FormControl } from 'r
 import { Meteor } from "meteor/meteor";
 import { withRouter } from "react-router-dom";
 import { withTracker } from "meteor/react-meteor-data";
+import GoogleMapReact from 'google-map-react';
 
 class ObservationDetail extends Component {
     constructor(props) {
@@ -41,6 +42,8 @@ class ObservationDetail extends Component {
     }
 
     render() {
+        const center = {lat: 59.95, lng: 40.33};
+        const zoom = 11;
         return(
             <div>
                 {this.state.data ? 
@@ -78,7 +81,12 @@ class ObservationDetail extends Component {
                                     </Row>
                                     <Row>
                                         <Col sm={12}>
-                                            
+                                            <GoogleMapReact
+                                                defaultCenter={center}
+                                                defaultZoom={zoom}
+                                                style={{height: '300px'}}
+                                            >
+                                            </GoogleMapReact>
                                         </Col>
                                     </Row>
                                 </Col>
