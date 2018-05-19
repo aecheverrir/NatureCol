@@ -129,7 +129,7 @@ class ObservationDetail extends Component {
     }
 
     renderOtherComments() {
-        return this.state.otherCommentomment.map((comment) => (
+        return this.state.otherComment.map((comment) => (
             <Comment key={comment._id} comment={comment.comment} />
         ));
     }
