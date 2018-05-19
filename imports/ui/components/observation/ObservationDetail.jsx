@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Row, Col, Grid, Button, FormGroup, ControlLabel, FormControl, Image } from 'react-bootstrap';
+import { Row, Col, Grid, Button, FormGroup, ControlLabel, FormControl, Image, Form } from 'react-bootstrap';
 import { Meteor } from "meteor/meteor";
 import { withRouter } from "react-router-dom";
 import { withTracker } from "meteor/react-meteor-data";
@@ -8,7 +8,7 @@ import { ProfileCollections } from '../../../api/profileCollections';
 
 import GoogleMapReact from 'google-map-react';
 import ReactDOM from 'react-dom';
-
+import { ObservationComments } from "../../../api/observationComments.js";
 import { Comments } from '../../../api/comments.js';
 import Comment from './Comment.jsx';
 
@@ -19,8 +19,10 @@ class ObservationDetail extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            newComment:'',
             collectionSelected: -1,
-            coordinates:[]
+            coordinates:[],
+            otherComment: []
         }
     }
 
@@ -38,7 +40,6 @@ class ObservationDetail extends Component {
 
     componentDidMount() {
         const id = this.props.oid + "";
-
         Meteor.call("iNaturalist.getObservationById", id, (err, res) => {
             if (!err) {
                 console.log(res[0]);
@@ -49,6 +50,16 @@ class ObservationDetail extends Component {
                 );
             }
         });
+        Meteor.call("comments.findByObservation", id, (err, res) => {
+            if (!err) {
+                this.setState(
+                    {
+                        otherComment: res
+                    }
+                );
+            }
+        });
+        
     }
 
     renderOptions() {
@@ -76,6 +87,33 @@ class ObservationDetail extends Component {
             });
         }
     }
+    
+    handleCommentCreation(e){
+        e.preventDefault();
+
+        if (this.state.newComment.length > 0) {
+            
+            let obsComment = {
+                ownerId: Meteor.user()._id,
+                ownerName: Meteor.user().username,
+                observationId: this.props.oid,
+                comment: this.state.newComment,
+                likes: 0,
+            };
+
+            Meteor.call('comments.create', obsComment, (err) => {
+                if (err) {
+                    console.log(err);
+                }
+            });
+        }
+    }
+
+    handleComment(event){
+        this.setState({
+            newComment: event.target.value
+        });
+    }
 
     handleSelect(event) {
         console.log(event.target.value);
@@ -84,17 +122,15 @@ class ObservationDetail extends Component {
         });
     }
 
-    getComments() {
-        return [
-          { _id: 1, text: 'This is comment 1' },
-          { _id: 2, text: 'This is comment 2' },
-          { _id: 3, text: 'This is comment 3' },
-        ];
-    }
-     
     renderComments() {
         return this.props.comments.map((comment) => (
           <Comment key={comment._id} comment={comment} />
+        ));
+    }
+
+    renderOtherComments() {
+        return this.state.otherCommentomment.map((comment) => (
+            <Comment key={comment._id} comment={comment.comment} />
         ));
     }
 
@@ -159,14 +195,18 @@ class ObservationDetail extends Component {
                         <hr/>
                         <h2>Comments ({this.props.commentCount}) </h2>
                         {this.renderComments()}
+                        {this.renderOtherComments()}
                             { this.props.currentUser ?
-                            <form className="new-task" onSubmit={this.handleSubmit.bind(this)} >
-                            <input
-                                type="text"
-                                ref="textInput"
-                                placeholder="Type to add new comments"
-                            />
-                            </form> : ''
+                            <Form className="new-task" onSubmit={this.handleCommentCreation.bind(this)} >
+                                <FormGroup controlId="formControlTextInput">
+                                    <ControlLabel>Gallery Name</ControlLabel>
+                                    <FormControl
+                                        type="text"
+                                        placeholder="Type to add new comments"
+                                        onChange={this.handleComment.bind(this)} />
+                                </FormGroup>
+                                <Button bsStyle="success" type="submit">Submit Commet</Button>
+                            </Form> : ''
                         }
                         
 
@@ -186,7 +226,6 @@ export default withTracker(() => {
     return {
         myCollections: ProfileCollections.find({}).fetch(),
         comments: Comments.find({}, { sort: { createdAt: -1 } }).fetch(),
-        commentCount: Comments.find({}).count(),
-        currentUser: Meteor.user(),
+        commentCount: Comments.find({}).count()
     };
   })(ObservationDetail);

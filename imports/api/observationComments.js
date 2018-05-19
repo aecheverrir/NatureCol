@@ -4,9 +4,12 @@ import { check, Match } from 'meteor/check';
 
 export const ObservationComments = new Mongo.Collection('observationComments');
 
-
 Meteor.methods({
+  'comments.findByObservation'(pObservationId) {
+    check(pObservationId, Match.OneOf(String, Number));
 
+    return ObservationComments.find({ observationId: pObservationId}).fetch();
+  },
   'comments.create'(commentJSON) {
     if (!this.userId) {
       throw new Meteor.Error('[Error] Not-authorized for the action');
@@ -24,7 +27,7 @@ Meteor.methods({
       throw new Meteor.Error('[Error] Not-authorized for the action');
     }
 
-    ProfileCollections.insert(commentJSON);
+    ObservationComments.insert(commentJSON);
   },
   'comments.update'(commentJSON) {
     if (!this.userId) {
@@ -39,7 +42,7 @@ Meteor.methods({
       likes: Match.OneOf(Match.Integer, Number),
     });
 
-    ProfileCollections.update({_id: commentJSON._id},{
+    ObservationComments.update({_id: commentJSON._id},{
       $set: { likes: commentJSON.likes},
       $currentDate: { lastModified: true }
     });
@@ -63,7 +66,7 @@ Meteor.methods({
       throw new Meteor.Error('[Error] Not-authorized for the action');
     }
 
-    ProfileCollections.remove({ _id: commentJSON._id});
+    ObservationComments.remove({ _id: commentJSON._id});
   }
 
 });
