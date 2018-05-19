@@ -52,6 +52,7 @@ class ObservationDetail extends Component {
         });
         Meteor.call("comments.findByObservation", id, (err, res) => {
             if (!err) {
+                console.log("ACAA", res);
                 this.setState(
                     {
                         otherComment: res
@@ -130,7 +131,7 @@ class ObservationDetail extends Component {
 
     renderOtherComments() {
         return this.state.otherComment.map((comment) => (
-            <Comment key={comment._id} comment={comment.comment} />
+            <Comment key={comment._id} comment={comment} />
         ));
     }
 

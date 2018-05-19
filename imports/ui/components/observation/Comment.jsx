@@ -23,7 +23,7 @@ export default class Comment extends Component {
                         {this.props.comment.username}
                     </div>
                     <div className="comment-content">
-                        {this.props.comment.text}
+                    {this.props.comment.text ? this.props.comment.text : this.props.comment.comment }
                     </div>
                 </div>
         );
