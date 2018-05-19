@@ -6,6 +6,7 @@
 	},
 	"dependencies": {
 		"@babel/runtime": "^7.0.0-beta.36",
+		"bcrypt": "^2.0.1",
 		"bootstrap": "^4.0.0",
 		"d3": "^4.13.0",
 		"google-map-react": "^1.0.3",
