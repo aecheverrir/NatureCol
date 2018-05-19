@@ -4,13 +4,6 @@ import { check, Match } from 'meteor/check';
 
 export const ObservationComments = new Mongo.Collection('observationComments');
 
-if (Meteor.isServer) {
-  // This code only runs on the server
-  Meteor.publish('tasks', function commentsPublication(idObservation) {
-    
-  });
-}
-
 
 Meteor.methods({
 

@@ -27,7 +27,7 @@ export default class MainView extends Component {
         <Route path='/discover' name='discoverPage' render={(props) => <DiscoverContainer {...props} />} />
         <Route path='/observation/detail' name='observationDetail' render={(props) => <ObservationDetailContainer {...props} />} />
         {this.props.currentUser ? 
-          <Route path='/profile' name='profilePage' render={(props) => <ProfileContainer {...props} />} />
+          <Route path='/profile' name='profilePage' render={(props) => <ProfileContainer {...props} currentUser={this.props.currentUser}/>} />
           :
           <Route path='/sign' name='signPage' render={(props) => <SignContainer {...props} />} />
         }

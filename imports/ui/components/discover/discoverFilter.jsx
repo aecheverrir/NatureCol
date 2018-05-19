@@ -5,7 +5,19 @@ export default class DiscoverFilter extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      commonName: ''
+      commonName: '',
+
+      captive: false,
+      verifiable: true,
+      quality_grade: false,
+      threatened: false,
+      introduced: false,
+      popular: false,
+      iconic_taxa: '',
+      order_by: '',
+      order: '',
+      d1: '',
+      d2: ''
     }
     this.handleSpeciesSubmit = this.handleSpeciesSubmit.bind(this);
     this.handleCommonNameChange = this.handleCommonNameChange.bind(this);
