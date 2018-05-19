@@ -32,7 +32,7 @@ export default class Footer extends React.Component {
                             </Col>
 
                             <Col sm={4}>
-                                <section className="Authors">
+                                <section className="adress">
                                     <p>Made with love By</p>
                                     <p className="location">
                                         Alejandro Echeverri
