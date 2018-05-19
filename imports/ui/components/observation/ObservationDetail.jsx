@@ -135,10 +135,28 @@ class ObservationDetail extends Component {
         ));
     }
 
+    renderMarkers(map, maps, center) {
+        if(maps) {
+            let marker = new maps.Marker({
+                position: center,
+                map,
+                title: 'Hello World!'
+              });
+      
+        }
+              }
+
     render() {
-        const center = {lat: 59.95, lng: 40.33};
         const zoom = 11;
-        const keyMAPS = "AIzaSyDalyRdzR3c2Xlq58CX4eT-zbc0UXoHYD8";
+        if(this.state.data && this.state.data.geojson){
+            var latitud = Number(this.state.data.geojson.coordinates[1]);
+            var longitud = Number(this.state.data.geojson.coordinates[0]);
+            var center = { lat: latitud, lng: longitud};
+        }
+        else {
+            var center = { lat: 4.5999278, lng: -74.0631095};
+     }
+
         return(
             <div>
                 {this.state.data ?
@@ -182,10 +200,11 @@ class ObservationDetail extends Component {
                                     <Row>
                                         <Col sm={12}>
                                             <GoogleMapReact
+                                                onGoogleApiLoaded={({map, maps}) => this.renderMarkers(map, maps, center)}
                                                 defaultCenter={center}
                                                 defaultZoom={zoom}
                                                 style={{height: '300px'}}
-                                                key={keyMAPS}
+                                                bootstrapURLKeys={{ key: "AIzaSyDb3RaUKwGlkwYovuVbyS9_EXqZrB8_3Wk" }}
                                             >
                                             </GoogleMapReact>
                                         </Col>
