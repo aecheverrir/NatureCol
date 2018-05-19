@@ -15,7 +15,8 @@ const IS_EQUAL = '=';
 const COLOMBIA_PLACE = 'place_id=7196';
 const PHOTOS_TRUE = "photos=true";
 
-const PER_PAGE = 'per_page';
+const PER_PAGE_OBS = 'per_page=16';
+const PER_PAGE_TAXA = 'per_page=10';
 const PAGE = 'page';
 
 const PREFERRED_COMMON_NAME = 'q';
@@ -48,6 +49,8 @@ Meteor.methods({
     let res = [];
     if (!CommonName.trim().length == 0){
       let urlCommand = INATURALIST_URL + TAXA + COLOMBIA_PLACE + AMPERSANT + PREFERRED_COMMON_NAME + IS_EQUAL + CommonName;
+
+      urlCommand += AMPERSANT + PER_PAGE_OBS + AMPERSANT;
       apiCallLog("GET", urlCommand);
       try {
         let res = HTTP.get(urlCommand);
@@ -63,11 +66,10 @@ Meteor.methods({
       }
     }
   },
-  'iNaturalist.getObservations'(queryParams, pageNum, itemsPerPage){
+  'iNaturalist.getObservations'(queryParams, pageNum){
     
     //Verificacion basica de los inputs
     Match.test(pageNum, Match.OneOf(Number, Match.Integer));
-    Match.test(itemsPerPage, Match.OneOf(Number, Match.Integer));
     check(queryParams, Object);
 
     //Verificacion detallada del JSON con los query params
@@ -94,12 +96,15 @@ Meteor.methods({
     Object.keys(queryParams).forEach((key) =>{
       urlCommand += AMPERSANT + key + IS_EQUAL + queryParams[key];
     });
+
+    urlCommand += AMPERSANT + PER_PAGE_OBS + AMPERSANT + PAGE + IS_EQUAL + pageNum;
+
     apiCallLog("QUERY", urlCommand);
 
     try {
       let res = HTTP.get(urlCommand);
       if (res) {
-        return res.data.results;
+        return res.data;
       }
       else {
         return null;
@@ -131,15 +136,15 @@ Meteor.methods({
       apiCallLog("ERROR detected! ", error);
     }
   },
-  'iNaturalist.getObservations.species'(queryParams, pageNum, itemsPerPage) {
+  'iNaturalist.getObservations.species'(queryParams, pageNum) {
 
     //Verificacion basica de los inputs
     Match.test(pageNum, Match.OneOf(Number, Match.Integer));
-    Match.test(itemsPerPage, Match.OneOf(Number, Match.Integer));
     check(queryParams, Object);
 
     //Verificacion detallada del JSON con los query params
     check(queryParams, {
+      taxon_id: Match.Maybe(String),
       captive: Match.Maybe(String),
       verifiable: Match.Maybe(String),
       quality_grade: Match.Maybe(String),
@@ -161,6 +166,9 @@ Meteor.methods({
     Object.keys(queryParams).forEach((key) => {
       urlCommand += AMPERSANT + key + IS_EQUAL + data[key];
     });
+
+    urlCommand += AMPERSANT + PER_PAGE_OBS + AMPERSANT + PAGE + IS_EQUAL + pageNum;
+
     apiCallLog("QUERY", urlCommand);
 
     try {
@@ -177,15 +185,15 @@ Meteor.methods({
     }
 
   },
-  'iNaturalist.getObservations.observers'(queryParams, pageNum, itemsPerPage) {
+  'iNaturalist.getObservations.observers'(queryParams, pageNum) {
 
     //Verificacion basica de los inputs
     Match.test(pageNum, Match.OneOf(Number, Match.Integer));
-    Match.test(itemsPerPage, Match.OneOf(Number, Match.Integer));
     check(queryParams, Object);
 
     //Verificacion detallada del JSON con los query params
     check(queryParams, {
+      taxon_id: Match.Maybe(String),
       captive: Match.Maybe(String),
       verifiable: Match.Maybe(String),
       quality_grade: Match.Maybe(String),
@@ -207,6 +215,9 @@ Meteor.methods({
     Object.keys(queryParams).forEach((key) => {
       urlCommand += AMPERSANT + key + IS_EQUAL + data[key];
     });
+
+    urlCommand += AMPERSANT + PER_PAGE_OBS + AMPERSANT + PAGE + IS_EQUAL + pageNum;
+
     apiCallLog("QUERY", urlCommand);
 
     try {
@@ -223,15 +234,15 @@ Meteor.methods({
     }
 
   },
-  'iNaturalist.getObservations.identifiers'(queryParams, pageNum, itemsPerPage) {
+  'iNaturalist.getObservations.identifiers'(queryParams, pageNum) {
 
     //Verificacion basica de los inputs
     Match.test(pageNum, Match.OneOf(Number, Match.Integer));
-    Match.test(itemsPerPage, Match.OneOf(Number, Match.Integer));
     check(queryParams, Object);
 
     //Verificacion detallada del JSON con los query params
     check(queryParams, {
+      taxon_id: Match.Maybe(String),
       captive: Match.Maybe(String),
       verifiable: Match.Maybe(String),
       quality_grade: Match.Maybe(String),
@@ -253,6 +264,9 @@ Meteor.methods({
     Object.keys(queryParams).forEach((key) => {
       urlCommand += AMPERSANT + key + IS_EQUAL + data[key];
     });
+
+    urlCommand += AMPERSANT + PER_PAGE_OBS + AMPERSANT + PAGE + IS_EQUAL + pageNum;
+
     apiCallLog("QUERY", urlCommand);
 
     try {

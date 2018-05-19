@@ -9,7 +9,9 @@ export default class DiscoverContainer extends Component {
 		super(props);
 		this.state = {
 			speciesList: [],
-			observations: []
+			observations: [],
+			observationsMaxPage: 1,
+			speciesMaxPage: 1
 		}
 		this.setSpeciesList = this.setSpeciesList.bind(this);
 		this.getObservations = this.getObservations.bind(this);
@@ -29,14 +31,15 @@ export default class DiscoverContainer extends Component {
 		});
 	}
 
-	getObservations(queryParams, pageNum, itemsPerPage) {
-		Meteor.call('iNaturalist.getObservations', queryParams, pageNum, itemsPerPage, (err, res) => {
+	getObservations(queryParams, pageNum) {
+		Meteor.call('iNaturalist.getObservations', queryParams, pageNum, (err, res) => {
 			if (err) {
-				console.err(err);
+				console.log(err);
 			}
 			else {
 				this.setState({
-					observations: res
+					observations: res.results,
+					observationsMaxPage: Math.ceil(res.total_results / res.per_page)
 				});
 			}
 		});

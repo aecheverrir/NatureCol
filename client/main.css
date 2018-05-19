@@ -378,6 +378,11 @@ footer .copyrights p a{
 
 }
 
+
+#tabGallery a {
+    color: black;
+}
+
 /* Observation Detail */
 #button-detail {
     margin-top: 5px;
@@ -401,4 +406,5 @@ footer .copyrights p a{
 .detail-name {
     color: #323232;
     font-style: italic;
+
 }

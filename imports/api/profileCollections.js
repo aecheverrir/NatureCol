@@ -4,6 +4,17 @@ import { check, Match } from 'meteor/check';
 
 export const ProfileCollections = new Mongo.Collection('profileCollections');
 
+if (Meteor.isServer) {
+  // This code only runs on the server
+  Meteor.publish('myCollections', function collectionsPublication() {
+    if (!this.userId) {
+      throw new Meteor.Error('[Error] Not-authorized for the action');
+    }
+    return ProfileCollections.find({ ownerId: this.userId});
+  });
+}
+
+
 Meteor.methods({
 
   'collections.create'(collectionJSON){
