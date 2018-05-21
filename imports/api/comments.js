@@ -26,5 +26,8 @@ Meteor.methods({
         owner: this.userId,
         username: Meteor.users.findOne(this.userId).username,
       });
+      // En la inserción de nuevos comentarios deberían tener en cuenta el id de la especie sobre la cual se hace el comentario
+      // ya que se siempre se muestran los mismos comentarios para todas las especies.
+      // Importante hacer la relación con el post
     },
   });
