@@ -67,6 +67,9 @@ class Profile extends React.Component {
                 <Row>
                     <Col sm={3}>
                         <Image src='images/profile-picture.png' alt='profile' />
+                        {/* en esta sección de la imagen de perfil pueden utilizar el 
+                        paquete de atmosphere ostrio:files (https://atmospherejs.com/ostrio/files)
+                        para que el usuario sea capaz de modificar su perfil*/}
                         <hr />
                         <Jumbotron style={{
                             textAlign: 'center',
